@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  roles:
+    - geerlingguy.java
+  tasks:
+    - name: check java is installed
+      shell: java -version 2>&1
+      changed_when: false
+      register: check_result
+    - name: display check result
+      debug:
+        var: check_result.stdout_lines

@@ -6,15 +6,16 @@ env:
   global:
     - ROLE_NAME: java
   matrix:
-    - MOLECULE_DISTRO: centos8
-    - MOLECULE_DISTRO: centos7
-    - MOLECULE_DISTRO: centos6
-    - MOLECULE_DISTRO: fedora31
-    - MOLECULE_DISTRO: ubuntu2004
-    - MOLECULE_DISTRO: ubuntu1804
-    - MOLECULE_DISTRO: ubuntu1604
-    - MOLECULE_DISTRO: debian10
-    - MOLECULE_DISTRO: debian9
+    - MOLECULE_DISTRO: geerlingguy/docker-centos8-ansible:latest
+    - MOLECULE_DISTRO: geerlingguy/docker-centos7-ansible:latest
+    - MOLECULE_DISTRO: geerlingguy/docker-centos6-ansible:latest
+    - MOLECULE_DISTRO: geerlingguy/docker-fedora31-ansible:latest
+    - MOLECULE_DISTRO: geerlingguy/docker-ubuntu2004-ansible:latest
+    - MOLECULE_DISTRO: geerlingguy/docker-ubuntu1804-ansible:latest
+    - MOLECULE_DISTRO: geerlingguy/docker-ubuntu1604-ansible:latest
+    - MOLECULE_DISTRO: geerlingguy/docker-debian10-ansible:latest
+    - MOLECULE_DISTRO: geerlingguy/docker-debian9-ansible:latest
+    - MOLECULE_DISTRO: evantill/docker-oraclelinux7-ansible:latest
 
 install:
   # Install test dependencies.
@@ -30,5 +31,9 @@ script:
   # Run tests.
   - molecule test
 
-notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+branches:
+  only:
+    - feature-testing
+
+#notifications:
+  #webhooks: https://galaxy.ansible.com/api/v1/notifications/
